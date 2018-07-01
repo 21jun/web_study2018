@@ -16,6 +16,7 @@
     <script type="text/javascript" src="myscript.js"></script>
     <script type="text/javascript" src="http://webclass.me/html5/javascript_example.js"></script>
 
+
 ## 변수
 
 ### var로 변수선언을 하는 경우
@@ -43,4 +44,23 @@
     Number -> String : .toString() 메소드
 + 변수 타입은 5개만 존재
     Number(float), String, Boolean, Undefined, Null
-        
++ typeof() 연산자로 변수 타입 확인가능
+
+
+## 연산자
+
+
+### 비교 연산자
+
+#### ==, != 연산자
+
+좌항과 우항의 값만 비교함
+"2"==2          // true
+true == '1'     // true
+
+#### ===, !== 연산자 
+
+좌항과 우항의 값과 타입을 비교함
+"2"==2          // false
+true === '1'    // false
+
