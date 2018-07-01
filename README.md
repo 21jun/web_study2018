@@ -41,3 +41,6 @@
 + 변수 형 변환
     String -> Number : parseInt(str), parseFloat(str)
     Number -> String : .toString() 메소드
++ 변수 타입은 5개만 존재
+    Number(float), String, Boolean, Undefined, Null
+        
