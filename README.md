@@ -139,8 +139,8 @@
 자바스크립트에서 모든것이 객체이다. (클래스가 존재하지 않음)
 상속은 클래스->클래스가 아닌 객체->객체로 이뤄진다.
 
-1. 객체 리터럴 {}
-###
+### 1. 객체 리터럴 {}
+
     var obj = {};
     
     var obj = new Object();
@@ -157,8 +157,19 @@
 
     // 이렇게 생성할경우 인스턴스할 필요없이 obj를 바로 사용하면됨 (이미 변수로 생성됨)
 
-2. 함수를 이용한 생성
+### 2. 함수를 이용한 생성
 
+    function Apple (param){
+        this.name = param;                  //this.변수 로 속성생성
+        this.color = 'red';
+        this.getColor = function(){         //메소드 정의
+            return this.color;
+        }
+    }
+
+    var a = Apple("myApple");
+    a.getName = function(){ return this.name }  //메소드 추가
+    a.weight = 10                               //속성 추가
 
 
 
