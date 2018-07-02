@@ -114,6 +114,7 @@
 +
 
     var arr[100];
+    var arr = [1,2,3,4,5,6,7];
 
 2. 배열 객체 생성 Array()
 +
@@ -121,3 +122,14 @@
     var arr = new Array(100);
     var arr = new Array(1,"Hello World", 3, [1,2,3], 5);
 
+
+### 배열 속성 & 메소드
+
+    arr.length              //배열 크기
+    arr.sort()              //배열 내 요소들의 순서를 오름차순으로 정렬한다. 숫자가 문자보다 앞선다.
+    arr.concat()            //배열의 뒤에 요소를 붙인다. (concatenation)
+    arr.slice()             //배열의 요소들 중 일부만을 배열로 만든다.
+    arr.push()              //배열에 가장뒤에 인자를 삽입한다.
+    arr.unshift()           //배열에 가장앞에 인자를 삽입한다
+    arr.pop()               //배열의 가장뒤의 원소를 삭제(하고 리턴)
+    arr.shift()             //배열의 가장앞의 원소를 삭제(하고 리턴)
