@@ -83,10 +83,10 @@ true === '1'    // false
 
 ### 함수의 형식
 
-+ function functionName (param){
-          ...
-          return;
-        }
+    function functionName (param){
+        ...
+        return;
+    }
 
 
 
