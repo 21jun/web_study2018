@@ -68,8 +68,7 @@ true === '1'    // false
 1. 객체에 포함된 속성의 갯수나 이름을 모르더라도 객체내의 모든 속성을 접근할 수 있는 방법
 2. 개선된 for문 안의 조건식은 (변수 in 객체)로 사용 : 객체의 개수만큼 반복
     for (var p in book) {
-        document.write( "Property name: " + p +
-        " Property value: " + book[p] + "<br/>");
+        document.write( "Property name: " + p + " Property value: " + book[p] + "<br/>");
     }
 3. 개선된 for문에서는 변수명을 이용한 객체 접근은 (.)으로 불가능
     []을 사용해야함 (속성의 실제이름을 모르니까 .속성이름 불가능)
