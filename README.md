@@ -85,11 +85,36 @@
 + 인수 개수보다 매개변수의 개수가 적다면 남은 인수는 Undefined로 설정
 
 ### 함수의 형식
-
+#### (1) 
     function functionName (param){
+        ...
+        return;
+    }
+#### (2)
+    var fucntionName = function(param){
+        ...
+        return
+    }
+
+### 인자 
++ 다중인자 받는방법
++
+    function functionName (param1, param2){
         ...
         return;
     }
 
 
+## 배열
+
+### 배열 생성
+
+1. 배열 리터럴 []
++
+    var arr[100];
+
+2. 배열 객체 생성 Array()
++
+    var arr = new Array(100);
+    var arr = new Array(1,"Hello World", 3, [1,2,3], 5);
 
