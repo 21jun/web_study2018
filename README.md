@@ -111,13 +111,13 @@
 ### 배열 생성
 
 1. 배열 리터럴 []
-+
+###
 
     var arr[100];
     var arr = [1,2,3,4,5,6,7];
 
 2. 배열 객체 생성 Array()
-+
+###
 
     var arr = new Array(100);
     var arr = new Array(1,"Hello World", 3, [1,2,3], 5);
@@ -133,3 +133,39 @@
     arr.unshift()           //배열에 가장앞에 인자를 삽입한다
     arr.pop()               //배열의 가장뒤의 원소를 삭제(하고 리턴)
     arr.shift()             //배열의 가장앞의 원소를 삭제(하고 리턴)
+
+
+## 객체
+자바스크립트에서 모든것이 객체이다. (클래스가 존재하지 않음)
+상속은 클래스->클래스가 아닌 객체->객체로 이뤄진다.
+
+1. 객체 리터럴 {}
+###
+    var obj = {};
+    
+    var obj = new Object();
+    
+    var obj = {'height':100, 'weight':200};
+
+    var obj = {
+        type: "fruit",
+        color: "red",
+        getColor: function(){
+            return this.color;
+        }
+    }
+
+    // 이렇게 생성할경우 인스턴스할 필요없이 obj를 바로 사용하면됨 (이미 변수로 생성됨)
+
+2. 함수를 이용한 생성
+
+
+
+
+
+
+
+
+### 접근
+1. obj['키값'] 으로 접근가능
+2. obj.키값 으로 접근가능
