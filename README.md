@@ -98,7 +98,8 @@
 
 ### 인자 
 + 다중인자 받는방법
-.
++
+
     function functionName (param1, param2){
         ...
         return;
@@ -110,11 +111,13 @@
 ### 배열 생성
 
 1. 배열 리터럴 []
-.
++
+
     var arr[100];
 
 2. 배열 객체 생성 Array()
-.
++
+
     var arr = new Array(100);
     var arr = new Array(1,"Hello World", 3, [1,2,3], 5);
 
