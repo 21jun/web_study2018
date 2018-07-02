@@ -67,7 +67,7 @@
 ## 반복문
 1. 객체에 포함된 속성의 갯수나 이름을 모르더라도 객체내의 모든 속성을 접근할 수 있는 방법
 2. 개선된 for문 안의 조건식은 (변수 in 객체)로 사용 : 객체의 개수만큼 반복
-+
+###
 
     for (var p in book) {
         document.write( "Property name: " + p + " Property value: " + book[p] + "<br/>");
@@ -98,7 +98,7 @@
 
 ### 인자 
 + 다중인자 받는방법
-+
+###
 
     function functionName (param1, param2){
         ...
