@@ -174,9 +174,55 @@
 
 
 
-
-
-
 ### 접근
 1. obj['키값'] 으로 접근가능
 2. obj.키값 으로 접근가능
+
+
+## 모듈
+자주 사용되는 코드를 별도의 파일로 만들어서 필요할 때마다 재활용할 수 있다.
+
+### 모듈 사용
+(자바스크립트 외부파일 참조)
+#### module1.js
+    function myFunction(){
+        ...
+        return 
+    }
+
+#### index.html
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8"/>
+        <script src="module.js"></script>       //모듈 불러오기
+    </head>
+    <body>
+        <script>
+            myFunction();                       //모듈 호출
+        </script>
+    </body>
+    </html>
+
+#### jQuery 라이브러리 사용
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <!-- jQuery 불러오기 -->
+    </head>
+    <body>
+        <ul id="list">
+            <li>empty</li>
+            <li>empty</li>
+            <li>empty</li>
+            <li>empty</li>
+        </ul>
+        <input id="execute_btn" type="button" value="execute" />
+        <script type="text/javascript">
+        $('#execute_btn').click(function(){
+            $('#list li').text('coding everybody');
+        })
+        </script>
+    </body>
+    </html>
