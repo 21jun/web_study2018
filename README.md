@@ -230,6 +230,8 @@
 ## 정규표현식 (regular expression)
 
 문자열에서 특정한 문자를 찾아내는 도구
+<br>
+정규표현식 시각화 : https://regexper.com/
 
 ### 정큐표현식 사용방법
 
@@ -240,3 +242,37 @@
 2. 정규표헌식 객체 생성자
 <br>    var pattern = new RegExp('찾을문자');
 
+#### 정규 표현식 메소드 실행
+##### 원하는 패턴을 추출
+    RegExp.exec('검색할 문자열')
+    -> pattern.exec('...')
+##### 원하는 패턴이 있는지 확인
+    RegExp.test('검색할 문자열')
+    -> pattern.test('...')
+
+#### 문자열 메소드 실행
+##### 원하는 패턴을 추출
+    String.match(pattern)
+    ->'검색할 문자열'.match(pattern)
+##### 원하는 패턴을 치환
+    String.replace(pattern, newString)
+    ->'검색할 문자열'.replace(pattern, newString)
+
+#### 정규표현식 옵션
+
+##### i 를 붙이면 대소문자를 구분하지 않는다
+    var pattern = /a/i;
+##### g 를 붙이면 검색된 모든 결과를 리턴한다 (없을땐 맨앞한개 리턴)
+    var pattern = /a/g;
+##### 옵션은 중첩사용 가능하다
+    var pattern = /a/ig;
+
+
+#### 캡쳐
+    괄호안의 패턴은 마치 변수처럼 재사용할 수 있다.
+    $기호를 사용하여 그룹을 선택
+    var pattern = /(\w+)\s(\w+)/;
+    var str = "coding everybody";
+    var result = str.replace(pattern, "$2, $1");  // 치환함
+    console.log(result);
+    >>> "everybody, coding"
