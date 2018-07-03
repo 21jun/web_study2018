@@ -236,7 +236,7 @@
 #### 컴파일
 검출하고자 하는 문자열에서 패턴을 만듬
 1. 정규표헌식 리터럴 사용 /찾을문자/
-    var pattern = /찾을문자/;
+<br>    var pattern = /찾을문자/;
 2. 정규표헌식 객체 생성자
-    var pattern = new RegExp('찾을문자');
+<br>    var pattern = new RegExp('찾을문자');
 
