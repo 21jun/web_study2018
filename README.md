@@ -285,7 +285,7 @@
     }
     alert(name);
 
-반복문 안에서 생성한 name 변수는 로컬이지만 for문 밖에서 사용가능
+반복문 안에서 생성한 name 변수는 for문 밖에서 사용가능
 
 #### 전역변수를 사용해야 하는경우
 1. 전역으로 객체를 만들고 해당 객체의 속성으로 변수를 관리한다
@@ -357,5 +357,67 @@
         }
         return funcs[mode];         //funcs 객체의 키값으로 mode 전달
     }
-    alert(cal('plus')(2,1));        //funcs 객체의 키값으로 mode = 'plus' 전달
+    alert(cal('plus')(2,1));        //funcs 객체의 키값으로 mode = 'plus' 전달  => function(2,1) 호출
     alert(cal('minus')(2,1));   
+
+### 콜백
+#### 배열의 sort 메소드 콜백
+    //숫자를 정렬하는 방법
+    function sortfunc(b,a) {
+      return b-a;                       //리턴값이 0,양수, 음수 에따라 sort함수의 동작이 바뀜
+    }
+
+    var numbers = [20, 10, 9,8,7,6,5,4,3,2,1];
+
+    numbers.sort(sortfunc);             //콜백함수 지정
+
+    >>> 1,2,3,4,5,6,7,8,9,10,20         //숫자순으로 정렬됨
+
+    numbers.sort();                     //콜백함수 없이 호출
+
+    >>> 1,10,2,20,3,4,5,6,7,8,9         //기본은 아스키코드순으로 정렬
+
+
+## 클로저 (closure)
+
+내부함수가 외부함수의 맥락(context)에 접근할 수 있게 하는 것.
+
+### 내부함수
+
+    function outter(){                  //외부함수
+        var title = 'coding everybody';  
+        function inner(){               //내부함수
+            alert(title);               //내부함수가 외부함수의 title 변수에 접근가능함
+        }
+        inner();    
+    }
+    outter();
+
+### 외부함수가 소멸되면
+(상속과 비슷함)    
+    function outter(){
+        var title = 'coding everybody';  
+        return function(){              //내부함수를 반환함
+            alert(title);
+        }
+    }
+    inner = outter();                   //내부함수를 inner에 저장 (outer 함수 소멸)
+    inner();                            //내부함수를 호출 -> 외부함수의 title 값이 보존되어있음
+
+### private 변수 
+
+    function factory_movie(title){      //외부함수의 지역변수인 title은 외부에서 변경불가 (리턴하고 외부함수 소멸)
+        return {                        //객체를 리턴함
+            get_title : function (){    //키값이 get_title 벨류가 function()...
+                return title;           //title 변수가 클로저로 인해 계속 존재함
+            },
+            set_title : function(_title){
+                title = _title          //title 변수가 클로저로 인해 계속 존재함
+            }
+        }
+    }
+
+    ghost = factory_movie('Ghost in the shell');
+    matrix = factory_movie('Matrix');
+
+    ghost.set_title('공각기동대');        //private 변수인 title을 변경함
