@@ -287,6 +287,8 @@
 
 반복문 안에서 생성한 name 변수는 for문 밖에서 사용가능
 
++ for문 안에 var i 도 계속해서 존재하는데, let i 로 선언하게되면 for문이 끝나고 소멸된다
+
 #### 전역변수를 사용해야 하는경우
 1. 전역으로 객체를 만들고 해당 객체의 속성으로 변수를 관리한다
 ##
@@ -420,4 +422,90 @@
     ghost = factory_movie('Ghost in the shell');
     matrix = factory_movie('Matrix');
 
-    ghost.set_title('공각기동대');        //private 변수인 title을 변경함
+    ghost.title = "공각기동대"           //변경되지 않음(접근불가)
+    ghost.set_title('공각기동대');       //private 변수인 title을 변경함
+
+
+### + 변수 유효범위로 인한 오류
+
+    var arr = []
+    for(var i = 0; i < 5; i++){
+        arr[i] = function(){
+            return i;               //이때 i는 전역변수인 var i 를 가르킨다
+        }
+    }
+    
+    for(var index in arr) {
+        console.log(arr[index]()); //전역 변수 i의 값이 5이므로 모두 5를 출력
+    }
+
+#### 클로저 이용
+
+    var arr = []
+    for(var i = 0; i < 5; i++){
+        arr[i] = function(id){      //함수 선언
+            return function(){
+                return id;          //id는 외부함수의 지역변수(인자값)이므로 클로저로 인해 접근할수 있고 
+                                    //외부함수가 소멸되어도 존재함
+            }
+        }(i)                        //여기서 호출시 i넣어줌 외부함수를 만들어 id에 반복당시의 i값 저장
+    }
+    
+    for(var index in arr) {
+        console.log(arr[index]());  // 0~4 출력함
+    }
+
+#### let 이용 ???
+
+    var arr = []
+    for(let i = 0; i < 5; i++){     //이때 i는 지역변수인 let i 를 가르킨다
+        arr[i] = function(){
+            return i;
+        }
+    }
+    
+    for(var index in arr) {
+        console.log(arr[index]());  // 0~4 출력함
+    }
+
+## arguments
+
+위에서 언급했듯이 자바스크립트는 함수의 인자의 갯수를 검사하지 않음
+
+    function sum(){                                         //매개변수로 아무것도 적지 않음 (파이썬에서 *args **kwargs 와 비슷한 역할)
+        var i, _sum = 0;    
+        for(i = 0; i < arguments.length; i++){              //arguments 변수는 이미 정의되어있는 변수임
+            document.write(i+' : '+arguments[i]+'<br />');  //arguments 는 사용자가 전달한 모든 인자를 저장한 유사배열
+            _sum += arguments[i];
+        }   
+        return _sum;
+    }
+    document.write('result : ' + sum(1,2,3,4));             //인자로 4개의 숫자 전달함
+
++ arguments는 사실 배열은 아니다. 실제로는 arguments 객체의 인스턴스다.
++ arguments.length : 전달받은 매개변수의 갯수
+
+### 매개변수와 인자의 수
+
+    function zero(){
+        console.log(
+            'zero.length', zero.length,
+            'arguments', arguments.length
+        );
+    }
+    function one(arg1){
+        console.log(
+            'one.length', one.length,
+            'arguments', arguments.length
+        );
+    }
+    function two(arg1, arg2){
+        console.log(
+            'two.length', two.length,
+            'arguments', arguments.length
+        );
+    }
+
+    zero(); // zero.length 0 arguments 0                    //함수이름.length 하면 함수의 매개변수의 갯수,
+    one('val1', 'val2');  // one.length 1 arguments 2       //arguments.length 하면 실제로 전달받은 인자의 갯수
+    two('val1');  // two.length 2 arguments 1               //함수이름.length != arguments.length 가 다를때 예외처리 가능
