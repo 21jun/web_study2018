@@ -232,7 +232,7 @@
 문자열에서 특정한 문자를 찾아내는 도구
 <br>
 정규표현식 시각화 : https://regexper.com/
-
+정규표현식 테스트 : https://regexr.com/
 ### 정큐표현식 사용방법
 
 #### 컴파일
@@ -276,3 +276,53 @@
     var result = str.replace(pattern, "$2, $1");  // 치환함
     console.log(result);
     >>> "everybody, coding"
+
+
+### 전역변수
+#### 자바스크립트는 "함수"에 대한 유효범위만을 제공함
+    for(var i = 0; i < 1; i++){
+        var name = 'coding everybody';
+    }
+    alert(name);
+
+반복문 안에서 생성한 name 변수는 로컬이지만 for문 밖에서 사용가능
+
+#### 전역변수를 사용해야 하는경우
+1. 전역으로 객체를 만들고 해당 객체의 속성으로 변수를 관리한다
+##
+    MYAPP = {}
+    MYAPP.calculator = {
+        'left' : null,
+        'right' : null
+    }
+    MYAPP.coordinate = {
+        'left' : null,
+        'right' : null
+    }
+    
+    MYAPP.calculator.left = 10;
+    MYAPP.calculator.right = 20;
+    function sum(){
+        return MYAPP.calculator.left + MYAPP.calculator.right;
+    }
+    document.write(sum());     
+2. 익명함수를 호출하여 사용
+    정의와 동시에 바로 호출됨 (맨 밑에 () 으로)
+##
+    (function(){
+        var MYAPP = {}
+        MYAPP.calculator = {
+            'left' : null,
+            'right' : null
+        }
+        MYAPP.coordinate = {
+            'left' : null,
+            'right' : null
+        }
+        MYAPP.calculator.left = 10;
+        MYAPP.calculator.right = 20;
+        function sum(){
+            return MYAPP.calculator.left + MYAPP.calculator.right;
+        }
+        document.write(sum());
+    }())
