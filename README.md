@@ -395,8 +395,7 @@
     }
     outter();
 
-### 외부함수가 소멸되면
-(상속과 비슷함)    
+### 외부함수가 소멸되면 
     function outter(){
         var title = 'coding everybody';  
         return function(){              //내부함수를 반환함
@@ -405,6 +404,8 @@
     }
     inner = outter();                   //내부함수를 inner에 저장 (outer 함수 소멸)
     inner();                            //내부함수를 호출 -> 외부함수의 title 값이 보존되어있음
+
++ C++상속과 비슷하게 작동
 
 ### private 변수 
 
@@ -509,3 +510,48 @@
     zero(); // zero.length 0 arguments 0                    //함수이름.length 하면 함수의 매개변수의 갯수,
     one('val1', 'val2');  // one.length 1 arguments 2       //arguments.length 하면 실제로 전달받은 인자의 갯수
     two('val1');  // two.length 2 arguments 1               //함수이름.length != arguments.length 가 다를때 예외처리 가능
+
+
+## 함수의 호출
+자바스크립트의 모든 것은 객체이므로 함수 또한 객체이고 내장메소드로 apply, call 등이 있다
+### 기본적인 함수 호출
+    function func(){
+        ...
+    }
+
+    func();
+
+### apply메소드를 사용한 함수 호출
+    function func(a,b){
+        return a+b
+    }
+
+    func.apply(null,[1,2]);
+
+### apply 메소드의 인자
+
+    o1 = {val1:1, val2:2, val3:3}
+    o2 = {v1:10, v2:50, v3:100, v4:25}
+
+    function sum(){
+        var _sum = 0;
+        for(name in this){              //this는 전달받은 인자로 치환됨
+            _sum += this[name];
+        }
+        return _sum;
+    }
+    alert(sum.apply(o1)) // 6           
+    alert(sum.apply(o2)) // 185         
+
+#### 기본 호출로 바꿀려면...
+    o1 = {val1:1, val2:2, val3:3}
+    o2 = {v1:10, v2:50, v3:100, v4:25}
+    function sum(o){
+        var _sum = 0;
+        for(name in o){
+            _sum += o[name];
+        }
+        return _sum;
+    }
+    alert(sum(o1)) // 6
+    alert(sum(o2)) // 185
