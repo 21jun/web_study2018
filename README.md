@@ -326,3 +326,36 @@
         }
         document.write(sum());
     }())
+
+
+
+## 값으로서의 함수 
+
+자바스크립트에선 모든것이 객체이기 떄문에 함수또한 객체이다 (일종의 값)
+
+### 함수는 다른 함수의 인자로 전달 될 수 있다.
+    function cal(func, num){
+        return func(num)
+    }
+    function increase(num){
+        return num+1
+    }
+    function decrease(num){
+        return num-1
+    }
+    alert(cal(increase, 1));        //인자로 increase 함수 전달
+    alert(cal(decrease, 1));
+
+### 함수는 다른 함수의 리턴 값으로 사용될 수 있다.
+    function cal(mode){
+
+        //funcs 객체 (함수)
+        var funcs = {
+            // 키 : 벨류
+            'plus' : function(left, right){return left + right},
+            'minus' : function(left, right){return left - right}
+        }
+        return funcs[mode];         //funcs 객체의 키값으로 mode 전달
+    }
+    alert(cal('plus')(2,1));        //funcs 객체의 키값으로 mode = 'plus' 전달
+    alert(cal('minus')(2,1));   
