@@ -735,10 +735,27 @@ Chain
 
 
 ## 원시 데이터 타입
-<pre>
     숫자
     문자열
     불리언(true/false)
     null
     undefined
+
+### 레퍼 객체 (wrapper)
+    숫자                    -> Number
+    문자열                  -> String
+    불리언(true/false)      -> Boolean
+
+    원시 데이터 타입을 자동으로 객체로 치환해주는것 (사용후 삭제됨)
+<pre>
+    var str = 'coding';
+    console.log(str.length);        // 6
+    console.log(str.charAt(0));     // "C"
+    //str = new String('coding'); 자동으로 레퍼객체 생성된것처럼 작동함
+
+</pre>
+<pre>
+    var str = 'coding';
+    str.prop = 'everybody';     // 사용후 삭제되어버림...
+    console.log(str.prop);      // undefined   (삭제되어 남아있지 않음)
 </pre>
