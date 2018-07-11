@@ -233,7 +233,7 @@
 <br>
 정규표현식 시각화 : https://regexper.com/
 정규표현식 테스트 : https://regexr.com/
-### 정표현식 사용방법
+### 정큐표현식 사용방법
 
 #### 컴파일
 검출하고자 하는 문자열에서 패턴을 만듬
@@ -555,3 +555,38 @@
     }
     alert(sum(o1)) // 6
     alert(sum(o2)) // 185
+
+
+## 객체지향 
+
+### 객체 생성방법
+#### 1 생성이후 속성을 추가
+    var person = {}
+    person.name = 'egoing';
+    person.introduce = function(){
+        return 'My name is '+this.name;
+    }
+    document.write(person.introduce());
+
+#### 2 속성명:속성 으로 초기화
+    var person = {
+        'name' : 'egoing',
+        'introduce' : function(){
+            return 'My name is '+this.name;
+        }
+    }
+    document.write(person.introduce());
+
+### 생성자와 new연산자
+
+    function Person(name){                      //함수의 파라메터가 생성자 역할을 한다
+        this.name = name;   
+        this.introduce = function(){
+            return 'My name is '+this.name; 
+        }   
+    }
+    var p1 = new Person('egoing');              //이미 정의된 객체를 new 연선자로 생성함(instance), 생성자또한 불림
+    document.write(p1.introduce()+"<br />");
+    
+    var p2 = new Person('leezche');
+    document.write(p2.introduce());
