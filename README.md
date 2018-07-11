@@ -747,6 +747,7 @@ Chain
     불리언(true/false)      -> Boolean
 
     원시 데이터 타입을 자동으로 객체로 치환해주는것 (사용후 삭제됨)
+    객체로 치환되므로 메소드를 사용할 수 있음
 <pre>
     var str = 'coding';
     console.log(str.length);        // 6
@@ -759,3 +760,41 @@ Chain
     str.prop = 'everybody';     // 사용후 삭제되어버림...
     console.log(str.prop);      // undefined   (삭제되어 남아있지 않음)
 </pre>
+
+## 참조와 복제
+
+    원시 데이터 타입은 복제가 일어나고, 객체 데이터 타입은 참조가 일어난다
+    (call by value, call by reference )
+### 복제
+
+    var a = 1;
+    var b = a;
+    b = 2;          // b값의 변화가 a에 영향을 끼치지 않음
+    console.log(a); // 1
+
+### 참조
+
+    var a = {'id':1};
+    var b = a;
+    b.id = 2;           // b값의 변화가 a값을 변경시킴
+    console.log(a.id);  // 2
+
+### 함수의 참조
+    var a = {'id':1};
+    function func(b){
+        b = {'id':2};
+    }
+    func(a);
+    console.log(a.id);  // 1
+
+이때 함수는 객체를 받았으므로 참조를통한 호출임.. b에 새로운 객체를 대입(포인팅이 바뀜(참조하는곳이 바뀜)) a와 연관이 없어짐
+<pre>
+    var a = {'id':1};
+    function func(b){
+        b.id = 2;
+    }
+    func(a);
+    console.log(a.id);  // 2
+</pre>
+
+이때 함수는 객체를 받았으므로 참조를통한 호출임.. b가 참조하는곳이 a이고 id값을 변경하면 참조하고 있는 a의 값 또한 변하게됨
