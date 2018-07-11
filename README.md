@@ -723,3 +723,22 @@ Chain
 2. 없다면 Sub.prototype.ultraProp를 찾는다.
 3. 없다면 Super.prototype.ultraProp를 찾는다.
 4. 없다면 Ultra.prototype.ultraProp를 찾는다.
+
+
+## 표준 내장 객체의 확장
+    Array.prototype.rand = function(){                          //표준 내장 객체 Array에 rand라는 메소드를 추가시킴
+        var index = Math.floor(this.length*Math.random());
+        return this[index];
+    }
+    var arr = new Array('seoul','new york','ladarkh','pusan', 'Tsukuba');
+    console.log(arr.rand());
+
+
+## 원시 데이터 타입
+<pre>
+    숫자
+    문자열
+    불리언(true/false)
+    null
+    undefined
+</pre>
