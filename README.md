@@ -590,3 +590,136 @@
     
     var p2 = new Person('leezche');
     document.write(p2.introduce());
+
+함수 호출시 new 연산자를 사용하면 생성자로 작동한다 (함수로 만들어진 객체 리턴함)    
+
+### 전역객체 (Global object)
+    function func(){
+        alert('Hello?');    
+    }
+    func();
+    window.func();
+
+    var o = {'func':function(){
+        alert('Hello?');
+    }}
+    o.func();
+    window.o.func();
+
+func();와 window.func();는 모두 실행이 된다. 모든 전역변수와 함수는 사실 window 객체의 프로퍼티(속성)다. 객체를 명시하지 않으면 암시적으로 window의 프로퍼티로 간주된다. -> window 객체의 메소드로 간주
+
+<br>
+웹브라우저에서는 window.
+<br>
+Node.js에서는 global.
+
+### this
+this는 함수 내에서 함수 호출 맥락(context)를 의미한다.
+###
+    function func(){
+        if(window === this){
+            document.write("window === this");
+        }
+    }
+    func();
+    //window === this
+
+window.func() 이기때문에 this===window
+###
+    var o = {
+        func : function(){
+            if(o === this){
+                document.write("o === this");
+            }
+        }
+    }
+    o.func();
+    //o === this
+
+o.func() 이기떄문에 this===o
+
+
+#### 생성자내에서 this
+    var funcThis = null; 
+    
+    function Func(){
+        funcThis = this;
+    }
+    var o1 = Func();                            //new 없으므로 함수그 자체로 작동
+    if(funcThis === window){                    //함수에선 this가 window임
+        document.write('window <br />');
+    }
+    
+    var o2 = new Func();                        //new로 부르면 생성자로 작동함
+    if(funcThis === o2){                        //생성자에선 this가 생성된 객체임
+        document.write('o2 <br />');
+    }
+
+#### call,apply 에 의한 this값 변화
+    var o = {}
+    var p = {}
+    function func(){
+        switch(this){
+            case o:
+                document.write('o<br />');
+                break;
+            case p:
+                document.write('p<br />');
+                break;
+            case window:
+                document.write('window<br />');
+                break;          
+        }
+    }
+    func();
+    func.apply(o);
+    func.apply(p);
+    //window
+    //o
+    //p
+
+
+## 상속
+    자바스크립트는 객체가 객체를 상속받는다.
+##
+    function Person(name){
+        this.name = name;
+    }
+    Person.prototype.name=null;                 //prototype으로 정의해야함
+    Person.prototype.introduce = function(){    //prototype으로 정의해야함
+        return 'My name is '+this.name; 
+    }
+    
+    function Programmer(name){
+        this.name = name;
+    }
+    Programmer.prototype = new Person();        //Person객체를 상속받음
+    Programmer.prototype.coding = function(){   //Programmer 객체에 속성 추가함
+        return "hello world";
+    }
+    var p1 = new Programmer('egoing');
+    document.write(p1.introduce()+"<br />");
+    document.write(p1.coding()+"<br />");
+
+### prototype
+
+    prototype에 저장된 속성들은 생성자를 통해서 객체가 만들어질 때 그 객체에 연결된다.
+
+###
+    function Ultra(){}
+    Ultra.prototype.ultraProp = true;
+    
+    function Super(){}
+    Super.prototype = new Ultra();
+    
+    function Sub(){}
+    Sub.prototype = new Super();
+    
+    var o = new Sub();
+    console.log(o.ultraProp);
+
+Chain
+1. 객체 o에서 ultraProp를 찾는다.
+2. 없다면 Sub.prototype.ultraProp를 찾는다.
+3. 없다면 Super.prototype.ultraProp를 찾는다.
+4. 없다면 Ultra.prototype.ultraProp를 찾는다.
